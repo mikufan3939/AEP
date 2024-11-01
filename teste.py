@@ -15,8 +15,7 @@ def get_db():
 def init_db():
     with app.app_context():
         db = get_db()
-        if db is None:
-            with app.open_resource('schema.sql', mode='r') as f:
+        with app.open_resource('schema.sql', mode='r') as f:
                 db.cursor().executescript(f.read())
                 db.cursor().close()
         db.commit()
@@ -54,7 +53,8 @@ def index():
 @app.route("/<user>", methods=["GET", "POST"])
 def usuario(user=None):
     if request.method=="GET":
-        return render_template("index.html", user=user)
+            init_db()
+            return render_template("index.html", user=user)
     else:
         try:
             cur = get_db().cursor()
