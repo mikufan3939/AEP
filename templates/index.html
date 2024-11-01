@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cofre de Senhas</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Position the username element in the top left corner and blend it */
+    .username-display, .username-form {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 200px;
+      background-color: transparent;
+    }
+    .username-form label {
+      font-weight: normal;
+      color: #555;
+    }
+    .username-form input {
+      border: none;
+      border-bottom: 1px solid #ddd;
+      border-radius: 0;
+      background-color: transparent;
+    }
+    .username-form input:focus {
+      box-shadow: none;
+      border-color: #888;
+    }
+    .username-form button {
+      font-size: 0.9em;
+      background-color: #007bff;
+      color: white;
+    }
+
+    /* Error Message Styling */
+    .error-message {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 400px;
+      color: #721c24;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <!-- Display Username or Form Conditionally -->
+  {% if user %}
+    <div class="username-display p-3 text-muted">
+      <span>Welcome, {{ user }}!</span>
+    </div>
+  {% else %}
+    <!-- Subtle Username Form at Top Left -->
+    <form action="/" method="POST" class="username-form">
+      <div class="form-group mb-2">
+        <label for="username" class="small">Username</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" required>
+      </div>
+      <button type="submit" class="btn btn-link p-0">Set Username</button>
+    </form>
+  {% endif %}
+
+  <!-- Error Message (Visible only if error parameter is passed) -->
+  {% if error %}
+    <div class="error-message">
+      {{ error }}
+    </div>
+  {% endif %}
+
+  <!-- Main Container -->
+  <div class="container mt-5">
+    <header class="text-center mb-4">
+      <h1 class="display-4">Cofre de Senhas</h1>
+      <a href="/{{user}}/senhas" class="btn btn-primary mt-3">Ver Senhas</a>
+    </header>
+
+    <main>
+      <div class="card p-4 shadow-sm">
+        <form action="/{{ user }}" method="POST">
+          <div class="form-group">
+            <label for="name">Nome da Senha</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Ex: Youtube" required>
+          </div>
+
+          <button type="submit" class="btn btn-success btn-block">Gerar Senha!</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

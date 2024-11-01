@@ -1,0 +1,8 @@
+CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT,nome_usuario TEXT NOT NULL UNIQUE, chave TEXT NOT NULL);
+
+CREATE TABLE senhas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    senha TEXT NOT NULL,
+    nome_senha TEXT NOT NULL UNIQUE,
+    id_usuario INTEGER NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id));

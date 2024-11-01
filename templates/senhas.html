@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stored Passwords</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Styling for the password list */
+    .password-container {
+      max-width: 600px;
+      margin: 50px auto;
+    }
+    .password-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+    }
+    .password-item span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <div class="container password-container">
+    <h3 class="text-center mb-4">Your Saved Passwords</h3>
+
+    <!-- Form for entering decryption key -->
+    <form action="/teste/senhas" method="POST" class="mb-4">
+      <div class="form-group">
+        <label for="decryption-key">Enter Decryption Key</label>
+        <input type="text" id="decryption-key" name="decryption_key" class="form-control" placeholder="Enter your key" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Decrypt Passwords</button>
+    </form>
+
+{% if not decrypt %}
+    {% if passwords %}
+      <ul class="list-unstyled">
+        {% for item in passwords %}
+          <li class="password-item">
+            <span>{{ item[0] }}:</span>
+            <span> ***************</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-center text-muted">No passwords saved yet.</p>
+    {% endif %}
+  </div>
+
+  {% else %}
+  {% if passwords %}
+  <ul class="list-unstyled">
+    {% for item in passwords %}
+      <li class="password-item">
+        <span>{{ item[1] }}:</span>
+        <span> {{ item[0] }}<span>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="text-center text-muted">No passwords saved yet.</p>
+{% endif %}
+</div>
+{% endif %}
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
