@@ -7,7 +7,6 @@
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* Styling for the password list */
     .password-container {
       max-width: 600px;
       margin: 50px auto;
@@ -25,15 +24,40 @@
     .password-item span {
       font-weight: bold;
     }
+    .error-message {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 400px;
+      color: #721c24;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   </style>
 </head>
 <body class="bg-light">
 
+  {% if error %}
+  <div class="error-message">
+    {{ error }}
+  </div>
+  {% endif %}
+
   <div class="container password-container">
     <h3 class="text-center mb-4">Your Saved Passwords</h3>
 
+    <!-- Back Button -->
+    <div class="text-center mb-4">
+      <a href="/{{ user }}" class="btn btn-secondary">Back</a>
+    </div>
+
     <!-- Form for entering decryption key -->
-    <form action="/teste/senhas" method="POST" class="mb-4">
+    <form action="/{{ user }}/senhas" method="POST" class="mb-4">
       <div class="form-group">
         <label for="decryption-key">Enter Decryption Key</label>
         <input type="text" id="decryption-key" name="decryption_key" class="form-control" placeholder="Enter your key" required>
@@ -41,36 +65,34 @@
       <button type="submit" class="btn btn-primary btn-block">Decrypt Passwords</button>
     </form>
 
-{% if not decrypt %}
-    {% if passwords %}
-      <ul class="list-unstyled">
-        {% for item in passwords %}
-          <li class="password-item">
-            <span>{{ item[0] }}:</span>
-            <span> ***************</span>
-          </li>
-        {% endfor %}
-      </ul>
+    {% if not decrypt %}
+      {% if passwords %}
+        <ul class="list-unstyled">
+          {% for item in passwords %}
+            <li class="password-item">
+              <span>{{ item[0] }}:</span>
+              <span> ***************</span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-center text-muted">No passwords saved yet.</p>
+      {% endif %}
     {% else %}
-      <p class="text-center text-muted">No passwords saved yet.</p>
+      {% if passwords %}
+        <ul class="list-unstyled">
+          {% for item in passwords %}
+            <li class="password-item">
+              <span>{{ item[1] }}:</span>
+              <span> {{ item[0] }} </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-center text-muted">No passwords saved yet.</p>
+      {% endif %}
     {% endif %}
   </div>
-
-  {% else %}
-  {% if passwords %}
-  <ul class="list-unstyled">
-    {% for item in passwords %}
-      <li class="password-item">
-        <span>{{ item[1] }}:</span>
-        <span> {{ item[0] }}<span>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p class="text-center text-muted">No passwords saved yet.</p>
-{% endif %}
-</div>
-{% endif %}
 
   <!-- Bootstrap JS and dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
