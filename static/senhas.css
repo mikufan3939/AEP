@@ -1,0 +1,31 @@
+.password-container {
+    max-width: 600px;
+    margin: 50px auto;
+  }
+  .password-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  .password-item span {
+    font-weight: bold;
+  }
+  .error-message {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
