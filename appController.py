@@ -6,6 +6,7 @@ from model.senhaModel import Senha
 # Configure application
 app = Flask(__name__)
 database='teste.db'
+# Coloque uma chave segura
 app.secret_key="teste"
 
 @app.route("/", methods=["GET", "POST"])
