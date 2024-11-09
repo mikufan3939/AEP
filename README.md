@@ -14,7 +14,7 @@ Além disso, a aplicação é estruturada baseada na arquitetura MVC, na pasta "
 
 ## Referências 🆙
 
-Grande agradecimentos:<br>
+Grandes agradecimentos:<br>
  <a href="https://www.geeksforgeeks.org/generating-strong-password-using-python/">Geeks for Geeks - Generating Strong Password using Python</a><br>
 <a href="https://cryptography.io/en/latest/">pyca/cryptography library</a><br>
 <a href="https://flask.palletsprojects.com/en/stable/">Flask</a>
