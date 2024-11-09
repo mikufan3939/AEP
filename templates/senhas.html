@@ -4,41 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stored Passwords</title>
-  <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .password-container {
-      max-width: 600px;
-      margin: 50px auto;
-    }
-    .password-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      background-color: #f9f9f9;
-    }
-    .password-item span {
-      font-weight: bold;
-    }
-    .error-message {
-      margin-top: 20px;
-      width: 100%;
-      max-width: 400px;
-      color: #721c24;
-      background-color: #f8d7da;
-      border: 1px solid #f5c6cb;
-      padding: 10px;
-      border-radius: 5px;
-      text-align: center;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  </style>
+  <link rel="stylesheet" href="/static/senhas.css">
 </head>
 <body class="bg-light">
 
@@ -49,20 +16,18 @@
   {% endif %}
 
   <div class="container password-container">
-    <h3 class="text-center mb-4">Your Saved Passwords</h3>
+    <h3 class="text-center mb-4">Suas senhas</h3>
 
-    <!-- Back Button -->
     <div class="text-center mb-4">
-      <a href="/{{ user }}" class="btn btn-secondary">Back</a>
+      <a href="/{{ user }}" class="btn btn-secondary">Voltar</a>
     </div>
 
-    <!-- Form for entering decryption key -->
     <form action="/{{ user }}/senhas" method="POST" class="mb-4">
       <div class="form-group">
-        <label for="decryption-key">Enter Decryption Key</label>
-        <input type="text" id="decryption-key" name="decryption_key" class="form-control" placeholder="Enter your key" required>
+        <label for="decryption-key">Digite a chave</label>
+        <input type="text" id="decryption-key" name="decryption_key" class="form-control" placeholder="Insira sua chave" required>
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Decrypt Passwords</button>
+      <button type="submit" class="btn btn-primary btn-block">Senhas descriptografadas</button>
     </form>
 
     {% if not decrypt %}
@@ -76,7 +41,7 @@
           {% endfor %}
         </ul>
       {% else %}
-        <p class="text-center text-muted">No passwords saved yet.</p>
+        <p class="text-center text-muted">Ainda não há senhas.</p>
       {% endif %}
     {% else %}
       {% if passwords %}
@@ -89,12 +54,11 @@
           {% endfor %}
         </ul>
       {% else %}
-        <p class="text-center text-muted">No passwords saved yet.</p>
+        <p class="text-center text-muted">Ainda não há senhas.</p>
       {% endif %}
     {% endif %}
   </div>
 
-  <!-- Bootstrap JS and dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

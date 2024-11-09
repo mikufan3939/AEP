@@ -1,0 +1,86 @@
+.username-display, .username-form {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    background-color: transparent;
+  }
+  .username-form label {
+    font-weight: normal;
+    color: #555;
+  }
+  .username-form input {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    background-color: transparent;
+  }
+  .username-form input:focus {
+    box-shadow: none;
+    border-color: #888;
+  }
+  .username-form button {
+    font-size: 0.9em;
+    background-color: #007bff;
+    color: white;
+  }
+
+  .error-message {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .key-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    word-wrap: break-word;
+  }
+
+  .key-box p {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+    overflow-wrap: break-word;
+    margin: 0;
+  }
+
+  .continue-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+  }
+
+  .text-center{
+    margin: 50px auto;
+
+  }
