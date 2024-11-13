@@ -3,8 +3,9 @@ from utils import generate_password
 import services.appService as appservice
 from model.userModel import User
 from model.senhaModel import Senha
+import webview
 # Configure application
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./static', template_folder='./templates')
 database='teste.db'
 # Coloque uma chave segura
 app.secret_key="teste"
@@ -99,3 +100,7 @@ def senhas(user=None):
         except:
             return redirect(url_for("senhas", user=user, error="Chave Inválida!"))
         
+webview.create_window('teste', app)
+
+if __name__ == '__main__':
+    webview.start()
